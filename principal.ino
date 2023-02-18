@@ -8,8 +8,8 @@
   // Composants connectes sur l'arduino
 #define DHT_PIN 12
 // leds pour le control de la temperature
-#define RED_LED_T 5
-#define GREEN_LED_T 4
+#define RED_LED_T 4
+#define GREEN_LED_T 3
 
 //AUTRES
 #define BUZZER 7
@@ -73,7 +73,8 @@ void loop() {
     Serial.println(dateTime.incremente_hours);
 
    }*/
-   
+      
+    digitalWrite(RED_LED_T, HIGH);
   wdt_reset();
 }
 
