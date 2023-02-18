@@ -20,7 +20,7 @@ void download_time(dateTime_t *now){  //now est une variable de type structure q
   now->month = decimal_hexa(Wire.read());
   now->year  = decimal_hexa(Wire.read());
   Wire.read(); //lecture du  8ieme octet
-  now->incremente_hours = decimal_hexa(Wire.read());
+  now->incremente_hours = decimal_hexa(Wire.read()); // et Enfin le 9ieme octet contenant le deadline incrimenté
 
   Clock( now->sec & 128); //verification de l'horloge
 }

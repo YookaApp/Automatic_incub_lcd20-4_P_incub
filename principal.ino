@@ -1,6 +1,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <avr/wdt.h> //include a watchdog Librairie
 #include <Wire.h>
+#include "ds18.h"
 #include "dht.h"
 #include "rtc.h"
 #include "moteur.h"
