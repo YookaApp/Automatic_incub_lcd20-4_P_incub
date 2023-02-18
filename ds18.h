@@ -1,14 +1,12 @@
 #ifndef ds
 #define ds //condition d'inclusion
 #include <OneWire.h>
-#include <dht.h>
 
 //differnetes constantes
-#define PIN_DS 12
+#define PIN_DS 2
 #define UPDATE 0x44 
 #define LECTURE 0xBE
 OneWire DS(PIN_DS);  //creation d'un objet Onewire
-dht capteur;
 
 void getTemperature(float *temperature){
 

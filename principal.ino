@@ -6,7 +6,7 @@
 #include "rtc.h"
 #include "moteur.h"
 
-  // Composants connectes sur l'arduino
+  // Composants connectés sur l'arduino
 #define DHT_PIN 12
 // leds pour le control de la temperature
 #define RED_LED_T 4
