@@ -9,11 +9,11 @@
 #define DHT_PIN 12
 // leds pour le control de la temperature
 #define RED_LED_T 4
-#define GREEN_LED_T 3
+#define GREEN_LED_T 5
 
 //AUTRES
-#define BUZZER 7
-#define RELAIS_RES 6
+#define BUZZER 3
+#define RELAIS_RES 9
 
 unsigned long temp_lcd, temp_RedTemp, temp_buzzer;
 bool state_Buzzer= false, state_RedTemp= false, state_GreenMotor = false;  //states to control buzzer and leds
@@ -34,8 +34,7 @@ void beginer(){
   pinMode(PIN_MOTEUR_a, OUTPUT);
   pinMode(PIN_MOTEUR_d, OUTPUT);
 
-  pinMode(PIN_RETOURNEMENT_RECUL, INPUT);
-  pinMode(PIN_RETOURNEMENT_AVANC, INPUT);
+  pinMode(PIN_MANUEL_RETOUR, INPUT);
   pinMode(PIN_FIN_de_COURSE_G, INPUT);
   pinMode(PIN_FIN_de_COURSE_D, INPUT);
 }
@@ -74,7 +73,12 @@ void loop() {
 
    }*/
       
-    digitalWrite(RED_LED_T, HIGH);
+    if(digitalRead(PIN_FIN_de_COURSE_D))
+    digitalWrite(GREEN_LED_T, HIGH);
+
+    else
+    digitalWrite(GREEN_LED_T, LOW);
+    
   wdt_reset();
 }
 

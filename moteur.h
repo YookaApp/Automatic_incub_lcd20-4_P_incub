@@ -5,13 +5,13 @@
 #define PIN_MOTEUR_a 36
 #define PIN_MOTEUR_d 38
 
-#define PIN_FIN_de_COURSE_G 3  // fin de course au fond de l'incubateur
-#define PIN_FIN_de_COURSE_D 19  //fin de course pres de la porte
+#define PIN_FIN_de_COURSE_G 6  // fin de course au fond de l'incubateur
+#define PIN_FIN_de_COURSE_D 7  //fin de course pres de la porte
 
 // BOUTON DE DIRECTION DU MOTEUR
 
-#define PIN_RETOURNEMENT_RECUL 2
-#define PIN_RETOURNEMENT_AVANC 18
+#define PIN_MANUEL_RETOUR 8
+
 #define DEADLINE 4
 
 //ce fichier contient les fonction permettant le retournement des oeufs grace au moteur
@@ -69,13 +69,13 @@ void control_Fin_de_course() {
 
 void lecture_buttons(){
   
-  if(digitalRead(PIN_RETOURNEMENT_RECUL) && !digitalRead(PIN_FIN_de_COURSE_G)){
+  if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G)){
     etat_bts = 1; 
     valider = true;
     flag_manuelRetour = true;
   }
   
-  else if(digitalRead(PIN_RETOURNEMENT_AVANC) && !digitalRead(PIN_FIN_de_COURSE_D)){
+  else if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_D)){
     etat_bts = 0;
     valider = true;
     flag_manuelRetour = true;
