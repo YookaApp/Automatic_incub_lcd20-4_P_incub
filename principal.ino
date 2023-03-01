@@ -43,9 +43,7 @@ void beginer(){
 void setup() {
     wdt_enable(WDTO_4S); //config a WTD 
     beginer();
-    temp_lcd = millis();
-    temp_buzzer=millis();
-    temp_RedTemp=millis();
+
     lcd_tempe.backlight();
     
   //(sec, mins, heur, dow, dom, moi, an) mise a jours de l'heure et de la date
@@ -57,28 +55,25 @@ void setup() {
 
   initial_retournement();
   initialisation();
+  temp_lcd = millis();
+  temp_buzzer=millis();
+  temp_RedTemp=millis();
   wdt_reset();
  }
 
 void loop() {
- /* 
+ 
   appel_fonction();                   //and that call a functions (download a times and temperature, Humidity)
   if(( millis() - temp_lcd) >= 1000){
     temp_lcd = millis();
     
-    readDHT( DHT_PIN, &tempe, &humidy );
+    //readDHT( DHT_PIN, &tempe, &humidy );
     download_time( &dateTime );
-    
+    getTemperature(&tempe);
     affichage();                        // after one seconde , this function update a datas to screen
     Serial.println(dateTime.incremente_hours);
-
-   }*/
-      
-    if(digitalRead(PIN_FIN_de_COURSE_D))
-    digitalWrite(GREEN_LED_T, HIGH);
-
-    else
-    digitalWrite(GREEN_LED_T, LOW);
+    Serial.println(tempe);
+   }
     
   wdt_reset();
 }
@@ -124,7 +119,7 @@ void control_leds_T(){
 
 void control_buzzer(){
  
-  if((tempe >= 39) || (humidy < 35) || valider ){
+  if((tempe >= 39) || valider ){
     if((millis()-temp_buzzer) >= 500){
         temp_buzzer=millis();
         state_Buzzer= !state_Buzzer;
