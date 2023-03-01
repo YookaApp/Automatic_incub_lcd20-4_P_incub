@@ -2,8 +2,8 @@
 #ifndef moteur
 #define moteur
 
-#define PIN_MOTEUR_a 36
-#define PIN_MOTEUR_d 38
+#define PIN_MOTEUR_a 10
+#define PIN_MOTEUR_d 11
 
 #define PIN_FIN_de_COURSE_G 6  // fin de course au fond de l'incubateur
 #define PIN_FIN_de_COURSE_D 7  //fin de course pres de la porte
