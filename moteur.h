@@ -68,6 +68,12 @@ void control_Fin_de_course() {
 
 
 void lecture_buttons(){
+
+  if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G) && !digitalRead(PIN_FIN_de_COURSE_D)){
+     // if any BTN FC is low
+     valider = true;
+     flag_manuelRetour = true;
+  }
   
   if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G)){
     etat_bts = 1; 

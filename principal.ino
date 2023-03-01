@@ -66,13 +66,16 @@ void loop() {
   appel_fonction();                   //and that call a functions (download a times and temperature, Humidity)
   if(( millis() - temp_lcd) >= 1000){
     temp_lcd = millis();
-    
-    //readDHT( DHT_PIN, &tempe, &humidy );
+    affichage();                        // after one seconde , this function update a datas to screen
+
+        // read datas
+        
+    readDHT( DHT_PIN, &dht_tempe, &humidy );
     download_time( &dateTime );
     getTemperature(&tempe);
-    affichage();                        // after one seconde , this function update a datas to screen
+
+    // send incrementHour to serial monitor
     Serial.println(dateTime.incremente_hours);
-    Serial.println(tempe);
    }
     
   wdt_reset();

@@ -18,7 +18,8 @@ struct dateTime_t{
 //QUELQUES VARIABLES GLOBALES DU PROGRAMME 
 
 //variable pour la temperature et l'humidity
-float tempe, humidy;
+float tempe;
+int dht_tempe, humidy;
 bool etat_buz= 0;
 
 //FONCTIONS POUR LA LECTURE DU CAPTEUR DHT22
