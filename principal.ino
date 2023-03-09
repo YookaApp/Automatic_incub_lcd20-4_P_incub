@@ -67,13 +67,11 @@ void loop() {
   if(( millis() - temp_lcd) >= 1000){
     temp_lcd = millis();
     affichage();                        // after one seconde , this function update a datas to screen
-
-        // read datas
-        
-    readDHT( DHT_PIN, &dht_tempe, &humidy );
     download_time( &dateTime );
     getTemperature(&tempe);
-
+        // read datas
+        
+//    readDHT( DHT_PIN, &dht_tempe, &humidy );
     // send incrementHour to serial monitor
     Serial.println(dateTime.incremente_hours);
    }
@@ -92,11 +90,11 @@ void appel_fonction(){
 void control_temperature(){
   
   if(tempe < 37.45){
-   digitalWrite(RELAIS_RES, LOW);
+   digitalWrite(RELAIS_RES, HIGH);
   }
 
-  else if(tempe > 37.55){
-   digitalWrite(RELAIS_RES, HIGH);
+   if(tempe > 37.55){
+   digitalWrite(RELAIS_RES, LOW);
   }
   
   control_leds_T();

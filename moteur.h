@@ -2,8 +2,8 @@
 #ifndef moteur
 #define moteur
 
-#define PIN_MOTEUR_a 10
-#define PIN_MOTEUR_d 11
+#define PIN_MOTEUR_a 11
+#define PIN_MOTEUR_d 10
 
 #define PIN_FIN_de_COURSE_G 6  // fin de course au fond de l'incubateur
 #define PIN_FIN_de_COURSE_D 7  //fin de course pres de la porte
@@ -71,11 +71,10 @@ void lecture_buttons(){
 
   if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G) && !digitalRead(PIN_FIN_de_COURSE_D)){
      // if any BTN FC is low
-     valider = true;
      flag_manuelRetour = true;
   }
   
-  if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G)){
+  else if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G)){
     etat_bts = 1; 
     valider = true;
     flag_manuelRetour = true;
