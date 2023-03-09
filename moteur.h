@@ -69,21 +69,25 @@ void control_Fin_de_course() {
 
 void lecture_buttons(){
 
-  if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G) && !digitalRead(PIN_FIN_de_COURSE_D)){
-     // if any BTN FC is low
-     flag_manuelRetour = true;
-  }
+  if(digitalRead(PIN_MANUEL_RETOUR)){
+    if(!digitalRead(PIN_FIN_de_COURSE_G) && !digitalRead(PIN_FIN_de_COURSE_D)){
   
-  else if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_G)){
-    etat_bts = 1; 
-    valider = true;
-    flag_manuelRetour = true;
-  }
-  
-  else if(digitalRead(PIN_MANUEL_RETOUR) && !digitalRead(PIN_FIN_de_COURSE_D)){
-    etat_bts = 0;
-    valider = true;
-    flag_manuelRetour = true;
+       // if any BTN FC is low
+       valider = true ;
+       flag_manuelRetour = true;
+   }
+    
+     else if(!digitalRead(PIN_FIN_de_COURSE_G)){
+      etat_bts = 1; 
+      valider = true;
+      flag_manuelRetour = true;
+    }
+    
+    else if(!digitalRead(PIN_FIN_de_COURSE_D)){
+      etat_bts = 0;
+      valider = true;
+      flag_manuelRetour = true;
+    } 
   }
 
   else {
