@@ -47,7 +47,7 @@ void setup() {
     lcd_tempe.backlight();
     
   //(sec, mins, heur, dow, dom, moi, an) mise a jours de l'heure et de la date
-  //update_time(0, 32, 3, 3, 28, 12, 22);
+  //update_time(0, 20, 10, 4, 20, 4, 23);
 
   download_time( &dateTime ); // telecharge l'heure et la date
   HourNow= dateTime.hours;
@@ -68,18 +68,15 @@ void loop() {
     temp_lcd = millis();
     affichage();                        // after one seconde , this function update a datas to screen
     download_time( &dateTime );
-    getTemperature(&tempe);
-        // read datas
-        
-//    readDHT( DHT_PIN, &dht_tempe, &humidy );
     // send incrementHour to serial monitor
     Serial.println(dateTime.incremente_hours);
    }
-    
   wdt_reset();
 }
 
 void appel_fonction(){  
+  getTemperature(&tempe);
+  humidy = (tempe*3)/2;
   retournement(); 
   control_temperature();
   control_buzzer(); 

@@ -47,7 +47,7 @@ void affichage(){
   lcd_tempe.print(dateTime.sec);
   lcd_tempe.print('"');
     
-  lcd_tempe.setCursor(2, 3);
+  lcd_tempe.setCursor(1, 3);
   lcd_tempe.print(decode_dow(dateTime.dow));
   lcd_tempe.print(" ");
   if (dateTime.dom < 10)

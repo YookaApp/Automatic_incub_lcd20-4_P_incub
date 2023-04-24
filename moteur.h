@@ -17,7 +17,7 @@
 //ce fichier contient les fonction permettant le retournement des oeufs grace au moteur
 boolean valider = false, etat_bts = true, flag_manuelRetour = false;
 int HourNow = 0; // variable content a Hour now
-bool memorie_btG = true, memorie_btD = true; // booleans content a state of course-ends buttons
+bool memorie_btG = false, memorie_btD = false; // booleans content a state of course-ends buttons
                                                 // setup to true value
 void initial_retournement(){
 
@@ -41,10 +41,9 @@ void control_hour() {
         if(deadlineNow >= DEADLINE){
                  deadlineNow = 0;
                  valider = true;
-                 
                  }    
       update_deadline_Hours(deadlineNow); // save incremente hour
-    Serial.print("Incremente OK ");
+      Serial.print("Incremente OK ");
    }
 }
 
@@ -57,7 +56,7 @@ void control_Fin_de_course() {
     etat_bts = 1; //dans l'autre cas on change de sens
   }
 
-  else if((data2 != memorie_btD) && (data2 == true) && !data1) {
+  if((data2 != memorie_btD) && (data2 == true) && !data1) {
     valider = false ;  //arret moteurs
     etat_bts = 0; //dans l'autre cas on change de sens
       }
