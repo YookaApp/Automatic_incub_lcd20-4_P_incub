@@ -86,11 +86,11 @@ void appel_fonction(){
 
 void control_temperature(){
   
-  if(tempe < 37.45){
+  if(tempe < 37.35){
    digitalWrite(RELAIS_RES, HIGH);
   }
 
-   if(tempe > 37.55){
+   if(tempe > 37.7){
    digitalWrite(RELAIS_RES, LOW);
   }
   
