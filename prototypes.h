@@ -16,10 +16,12 @@ struct dateTime_t{
 }dateTime;
 
 //QUELQUES VARIABLES GLOBALES DU PROGRAMME 
+//FONCTIONS POUR LA LECTURE DU CAPTEUR DHT22
+byte readDHT(byte pin, float* temperature, float* humidity);
 
 //variable pour la temperature et l'humidity
 float tempe;
-int  humidy;
+float  humidy;
 bool etat_buz= 0;
 
 //FONCTIONS POUR LA LECTURE DU CAPTEUR DHT22
@@ -27,6 +29,8 @@ byte readDHT(byte pin, float* temperature, float* humidity);
 
  //FONCTIONS POUR LE CONTROL DE tempe,humid,leds, etc...
 void control_temperature();
+void control_humidity();
+
 void control_leds_T();
 void control_buzzer();
 
