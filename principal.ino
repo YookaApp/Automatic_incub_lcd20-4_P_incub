@@ -1,15 +1,16 @@
+
 #include <LiquidCrystal_I2C.h>
 #include <avr/wdt.h> //include a watchdog Librairie
 #include <Wire.h>
-#include "ds18.h"
+#include "lcd.h"
 #include "dht.h"
-#include "rtc.h"
 #include "moteur.h"
+#include "rtc.h"
 
   // Composants connectés sur l'arduino
-#define DHT_PIN 12
+#define DHT_PIN 2
 // leds pour le control de la temperature
-#define RED_LED_T 4
+#define RELAIS_BRIS 4
 #define GREEN_LED_T 5
 
 //AUTRES
@@ -25,7 +26,7 @@ void beginer(){
   Serial.begin(9600);
   Wire.begin(); //initialisation de la voie i2c
   
-  pinMode(RED_LED_T , OUTPUT);
+  pinMode(RELAIS_BRIS , OUTPUT);
   pinMode(GREEN_LED_T, OUTPUT);
   
   pinMode(BUZZER, OUTPUT);
@@ -66,6 +67,8 @@ void loop() {
   appel_fonction();                   //and that call a functions (download a times and temperature, Humidity)
   if(( millis() - temp_lcd) >= 1000){
     temp_lcd = millis();
+    
+    readDHT( DHT_PIN, &tempe, &humidy );
     affichage();                        // after one seconde , this function update a datas to screen
     download_time( &dateTime );
     // send incrementHour to serial monitor
@@ -75,10 +78,9 @@ void loop() {
 }
 
 void appel_fonction(){  
-  getTemperature(&tempe);
-  humidy = (tempe*3)/2;
   retournement(); 
   control_temperature();
+  control_humidity();
   control_buzzer(); 
   
    }
@@ -100,24 +102,29 @@ void control_temperature(){
 void control_leds_T(){
 
    if((tempe > 36) && (tempe < 38.9)){
-    digitalWrite(RED_LED_T, LOW);
     digitalWrite(GREEN_LED_T, HIGH);
   }
 
   else{
     digitalWrite(GREEN_LED_T, LOW);
-        if((millis()-temp_RedTemp) >= 500){
-        temp_RedTemp=millis();
-        state_RedTemp= !state_RedTemp;
-        digitalWrite(RED_LED_T, state_RedTemp);
       }
+}
+
+void control_humidity(){
+  
+  if(humidy < 55){
+    digitalWrite(RELAIS_BRIS, HIGH);
   }
+
+  else if(humidy > 60){
+    digitalWrite(RELAIS_BRIS, LOW);
+  }  
 }
 
 
 void control_buzzer(){
  
-  if((tempe >= 39) || valider ){
+  if((tempe >= 39) || valider || (humidy < 30)){
     if((millis()-temp_buzzer) >= 500){
         temp_buzzer=millis();
         state_Buzzer= !state_Buzzer;
