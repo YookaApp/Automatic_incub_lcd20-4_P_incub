@@ -88,7 +88,7 @@ void appel_fonction(){
 
 void control_temperature(){
  
-   if( tempe >= 38.3){      // checking temperature value
+   if( tempe >= 38.2){      // checking temperature value
     state_brimasseur = true; // if >, stop It 
    } 
    
@@ -131,7 +131,7 @@ void control_leds_T(){
 
 void control_buzzer(){
  
-  if((tempe >= 39) || valider || (humidy < 30)){
+  if(state_brimasseur || valider || (humidy < 30)){
     if((millis()-temp_buzzer) >= 500){
         temp_buzzer=millis();
         state_Buzzer= !state_Buzzer;
