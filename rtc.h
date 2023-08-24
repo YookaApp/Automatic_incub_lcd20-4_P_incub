@@ -1,6 +1,5 @@
 #ifndef rtc
 #define rtc
-#include "lcd.h"
 
    //Constantes pour le module RTC 
 #define ADRESS_RTC 0x68 // qui vaut 104 en decimal

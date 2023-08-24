@@ -5,6 +5,7 @@
 #include "prototypes.h"
 
 char tableau[2];
+
 LiquidCrystal_I2C lcd_tempe(0x27, 20, 4);
 
 void affichage(){

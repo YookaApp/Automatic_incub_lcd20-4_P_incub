@@ -22,7 +22,7 @@ byte readDHT(byte pin, float* temperature, float* humidity);
 //variable pour la temperature et l'humidity
 float tempe;
 float  humidy;
-bool etat_buz= 0;
+bool etat_buz= 0, state_brimasseur = false;
 
 //FONCTIONS POUR LA LECTURE DU CAPTEUR DHT22
 byte readDHT(byte pin, float* temperature, float* humidity);
