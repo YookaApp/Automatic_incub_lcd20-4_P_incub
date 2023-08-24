@@ -4,8 +4,8 @@
 #include <Wire.h>
 #include "lcd.h"
 #include "dht.h"
-#include "moteur.h"
 #include "rtc.h"
+#include "moteur.h"
 
   // Composants connectés sur l'arduino
 #define DHT_PIN 2
@@ -102,6 +102,23 @@ void control_temperature(){
   
 }
 
+void control_humidity(){
+  if(state_brimasseur){
+      digitalWrite(RELAIS_BRIS, LOW);
+  }
+  
+  else {
+      if(humidy < 55){
+      digitalWrite(RELAIS_BRIS, HIGH);
+    }
+  
+    else if(humidy > 60){
+      digitalWrite(RELAIS_BRIS, LOW);
+    }   
+  } 
+}
+
+
 void control_leds_T(){
    if((tempe > 36) && (tempe < 38.9)){
     digitalWrite(GREEN_LED_T, HIGH);
@@ -111,20 +128,6 @@ void control_leds_T(){
     digitalWrite(GREEN_LED_T, LOW);
       }
 }
-
-void control_humidity(){
-  if(!state_brimasseur) {
-      if(humidy < 55){
-      digitalWrite(RELAIS_BRIS, HIGH);
-    }
-  
-    else if(humidy > 60){
-      digitalWrite(RELAIS_BRIS, LOW);
-    }   
-  }
- 
-}
-
 
 void control_buzzer(){
  

@@ -38,10 +38,14 @@ void control_hour() {
       HourNow = dateTime.hours;
       deadlineNow = deadlineNow + 1;
 
-        if(deadlineNow >= DEADLINE){
-                 deadlineNow = 0;
-                 valider = true;
-                 }    
+      if(state_brimasseur){
+        state_brimasseur = false // after one hour restaring a brimasseur component         
+      }
+
+      if(deadlineNow >= DEADLINE){
+             deadlineNow = 0;
+             valider = true;
+      s}    
       update_deadline_Hours(deadlineNow); // save incremente hour
       Serial.print("Incremente OK ");
    }
